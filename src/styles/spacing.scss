@@ -1,0 +1,20 @@
+:root {
+  --spacing-9xl: 9rem;
+  --spacing-8xl: 8rem;
+  --spacing-7xl: 7rem;
+  --spacing-6xl: 6rem;
+  --spacing-5xl: 5rem;
+  --spacing-4xl: 4rem;
+  --spacing-3xl: 3rem;
+  --spacing-2xl: 2rem;
+  --spacing-xl: 1.5rem;
+  --spacing-lg: 1.25rem;
+  --spacing-md: 1rem;
+  --spacing-sm: 0.75rem;
+  --spacing-xs: 0.5rem;
+  --spacing-2xs: 0.25rem;
+
+  --radius-circle: 50%;
+  --radius-md: var(--spacing-md);
+  --radius-sm: var(--spacing-xs);
+}
