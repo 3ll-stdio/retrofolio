@@ -47,8 +47,7 @@
   --neutral-1: #F0F1EE;
   --white: #FFFFFF;
 
-  --elevation-12: var(--black);
-  --elevation-11: var(--neutral-11);
+  --elevation-11: var(--black);
   --elevation-10: var(--neutral-10);
   --elevation-9: var(--neutral-9);
   --elevation-8: var(--neutral-8);
@@ -60,6 +59,9 @@
   --elevation-2: var(--neutral-2);
   --elevation-1: var(--neutral-1);
   --elevation-0: var(--white);
+
+  --shadow-1: 2px solid rgba(0, 0, 0, 0.8);
+  --highlight-1: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 [data-theme="red"] {

@@ -3,6 +3,11 @@
 @import './styles/spacing.scss';
 @import './styles/typography.scss';
 
+:root {
+  --duration-1: 0.2s;
+  --easing-1: ease-in-out;
+}
+
 * {
   padding: 0;
   margin: 0;

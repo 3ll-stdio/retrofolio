@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Badge, Header, Footer } from "@components";
+import { Badge, Header, Footer, Nav } from "@components";
 </script>
 
 <template>
@@ -10,18 +10,17 @@ import { Badge, Header, Footer } from "@components";
 
     <div class="screen">
       <Header />
+
       <div class="view">
         <router-view></router-view>
       </div>
+
       <Footer />
+
       <div class="shadow"></div>
     </div>
 
-    <nav class="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link to="/projects">Projects</router-link>
-    </nav>
+    <Nav class="nav"></Nav>
   </div>
 </template>
 
@@ -69,8 +68,12 @@ import { Badge, Header, Footer } from "@components";
 }
 
 .nav {
+  display: inline-flex;
+  justify-content: center;
   position: fixed;
-  left: 50%;
-  bottom: var(--spacing-md);
+  left: 0;
+  right: 0;
+  bottom: var(--spacing-xs);
+  z-index: 10;
 }
 </style>
