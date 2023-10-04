@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Badge, Header, Footer, Nav, Noise } from "@components";
+import { Badge, Header, Footer, Nav } from "@components";
 </script>
 
 <template>
@@ -19,7 +19,7 @@ import { Badge, Header, Footer, Nav, Noise } from "@components";
 
       <div class="shadow"></div>
 
-      <Noise class="noise" />
+      <!-- <Noise class="noise" /> -->
     </div>
 
     <Nav class="nav"></Nav>
@@ -63,6 +63,7 @@ import { Badge, Header, Footer, Nav, Noise } from "@components";
   width: 100%;
   height: 100%;
   box-shadow: 0px 0px 64px 0px black inset;
+  pointer-events: none;
 }
 
 .view {
