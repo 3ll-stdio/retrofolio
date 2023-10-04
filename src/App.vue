@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Badge, Header, Footer, Nav } from "@components";
+import { Badge, Header, Footer, Nav, Noise } from "@components";
 </script>
 
 <template>
@@ -18,6 +18,8 @@ import { Badge, Header, Footer, Nav } from "@components";
       <Footer />
 
       <div class="shadow"></div>
+
+      <Noise class="noise" />
     </div>
 
     <Nav class="nav"></Nav>
@@ -60,7 +62,7 @@ import { Badge, Header, Footer, Nav } from "@components";
   z-index: 1;
   width: 100%;
   height: 100%;
-  box-shadow: 0px 0px 64px 0px rgba(0, 0, 0, 0.4) inset;
+  box-shadow: 0px 0px 64px 0px black inset;
 }
 
 .view {
