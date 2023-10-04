@@ -13,8 +13,10 @@
   --spacing-sm: 0.75rem;
   --spacing-xs: 0.5rem;
   --spacing-2xs: 0.25rem;
+  --spacing-3xs: 0.125rem;
 
   --radius-circle: 50%;
   --radius-md: var(--spacing-md);
-  --radius-sm: var(--spacing-xs);
+  --radius-sm: var(--spacing-sm);
+  --radius-xs: var(--spacing-xs);
 }
