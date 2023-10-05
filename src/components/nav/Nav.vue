@@ -19,7 +19,7 @@ import NavButton from "./NavButton.vue";
 
 nav {
   display: inline-flex;
-  padding: var(--spacing-sm);
+  padding: var(--spacing-xs);
   align-items: center;
   gap: var(--spacing-sm);
   border-radius: var(--radius-md);

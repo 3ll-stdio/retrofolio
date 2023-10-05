@@ -1,7 +1,7 @@
 import { RouterLink } from 'vue-router';
 <script setup lang="ts">
 defineProps<{
-  link: RouterLink;
+  link: string;
   text: string;
 }>();
 </script>
@@ -15,16 +15,16 @@ defineProps<{
 <style scoped lang="scss">
 .nav-button {
   display: inline-flex;
-  padding: var(--spacing-lg) var(--spacing-xl);
+  padding: var(--spacing-md) var(--spacing-lg);
   justify-content: center;
   align-items: center;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   background-color: var(--elevation-9);
   border-top: var(--highlight-1);
   border-bottom: var(--shadow-1);
   transition: background-color, border;
   transition-duration: var(--duration-1);
-  transition-easing: var(--easing-1);
+  transition-timing-function: var(--easing-1);
 
   &:hover,
   &:focus {

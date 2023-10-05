@@ -35,6 +35,8 @@ import { ThemeSelector, TimeAndDate } from "@components";
 </template>
 
 <style scoped lang="scss">
+@use "../../styles/breakpoints.scss" as *;
+
 footer {
   display: flex;
   flex-direction: column;
@@ -44,8 +46,6 @@ footer {
 
 .row {
   display: flex;
-  flex-direction: row;
-  align-items: stretch;
   padding: 0 var(--spacing-md);
 }
 
@@ -56,12 +56,22 @@ footer {
 }
 
 .top {
+  flex-direction: row;
+  align-items: stretch;
   background-color: var(--elevation-8);
+  color: var(--elevation-4);
 }
 
 .bottom {
+  flex-direction: column-reverse;
+  align-items: center;
   background-color: var(--elevation-0);
   color: var(--elevation-11);
+
+  @include sm {
+    flex-direction: row;
+    align-items: stretch;
+  }
 }
 
 .time-and-date,
