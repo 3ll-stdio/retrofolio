@@ -23,47 +23,47 @@ defineProps<{
   *:focus-within,
   *:focus-visible,
   *:active {
-    outline: initial;
+    outline: revert;
   }
 
   img {
-    user-select: initial;
-    pointer-events: initial;
+    user-select: revert;
+    pointer-events: revert;
   }
 
   li {
-    list-style-type: initial;
+    list-style-type: revert;
   }
 
   a {
-    color: initial;
-    outline: initial;
-    text-decoration: initial;
-    cursor: initial;
-    display: initial;
+    color: revert;
+    outline: revert;
+    text-decoration: revert;
+    cursor: revert;
+    display: revert;
   }
 
   button {
-    border: initial;
-    cursor: initial;
-    background-color: initial;
-    text-decoration: initial;
-    user-select: initial;
+    border: revert;
+    cursor: revert;
+    background-color: revert;
+    text-decoration: revert;
+    user-select: revert;
   }
 
   dialog {
-    margin: initial;
-    border: initial;
+    margin: revert;
+    border: revert;
   }
 
   input,
   textarea {
-    background: initial;
-    border: initial;
+    background: revert;
+    border: revert;
   }
 
   hr {
-    border: initial;
+    border: revert;
   }
 }
 </style>
