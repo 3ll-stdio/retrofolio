@@ -27,13 +27,22 @@ onMounted(() => {
 </script>
 
 <template>
-  <Window :file="state.fileInfo" class="cv">
-    <Markdown :source="state.markdownContent" />
-  </Window>
+  <div class="view-container">
+    <Window :file="state.fileInfo" class="cv">
+      <Markdown :source="state.markdownContent" />
+    </Window>
+  </div>
 </template>
 
 <style scoped>
+.view-container {
+  padding: var(--spacing-md);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 .cv {
-  grid-column: 1 / 3;
+  height: 100%;
 }
 </style>

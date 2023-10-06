@@ -11,3 +11,4 @@ export * from "./window";
 export * from "./markdown";
 export * from "./display-img";
 export * from "./file-explorer";
+export * from "./project-card";

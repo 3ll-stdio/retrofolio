@@ -80,23 +80,40 @@ const handleFileChange = (file: IFile) => {
 </script>
 
 <template>
-  <Window :file="displayFile.fileInfo" class="readme">
-    <Markdown :source="displayFile.markdownContent" />
-  </Window>
-
-  <div class="right">
-    <Window :file="displayImg.fileInfo">
-      <DisplayImg :source="displayImg.src" />
+  <div class="view-container">
+    <Window :file="displayFile.fileInfo" class="readme">
+      <Markdown :source="displayFile.markdownContent" />
     </Window>
 
-    <Window :file="displayFile.fileInfo" class="file-explorer">
-      <FileExplorer :files="files" :handleFileChange="handleFileChange" />
-    </Window>
+    <div class="right">
+      <Window :file="displayImg.fileInfo">
+        <DisplayImg :source="displayImg.src" />
+      </Window>
+
+      <Window :file="displayFile.fileInfo" class="file-explorer">
+        <FileExplorer :files="files" :handleFileChange="handleFileChange" />
+      </Window>
+    </div>
   </div>
 </template>
 
 <style scoped lang="scss">
 @use "src/styles/breakpoints.scss" as *;
+
+.view-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  
+  @include lg {
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+}
 
 .readme {
   height: 40rem;

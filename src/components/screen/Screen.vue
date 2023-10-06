@@ -51,17 +51,7 @@ import { Header, Footer } from "@components";
 }
 
 .view {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md);
-  flex-grow: 1;
   height: 100%;
   overflow-y: auto;
-  
-  @include lg {
-    grid-template-columns: 1fr 1fr;
-    overflow: hidden;
-  }
 }
 </style>
