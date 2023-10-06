@@ -4,14 +4,23 @@ import { Logo } from "@components";
 </script>
 
 <template>
-  <div class="outer">
-    <div class="inner">
-      <Logo :variant="LOGOS.MARK" class="logo" />
+  <router-link to="/" class="badge">
+    <div class="outer">
+      <div class="inner">
+        <Logo :variant="LOGOS.MARK" class="logo" />
+      </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.badge {
+  &:hover .logo,
+  &:focus-visible .logo {
+    animation: flip 2s linear infinite;
+  }
+}
+
 .outer,
 .inner {
   padding: var(--spacing-2xs);
@@ -23,10 +32,6 @@ import { Logo } from "@components";
 .outer {
   box-shadow: 0px -2px 2px 0px rgba(255, 255, 255, 0.4) inset,
     0px 2px 2px 0px rgba(0, 0, 0, 0.4) inset;
-
-  &:hover .logo {
-    animation: flip 2s linear infinite;
-  }
 }
 
 .inner {

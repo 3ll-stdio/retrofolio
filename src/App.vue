@@ -4,9 +4,7 @@ import { Badge, Screen, Nav } from "@components";
 
 <template>
   <div class="pc">
-    <router-link to="/" class="logo">
-      <Badge />
-    </router-link>
+    <Badge />
 
     <Screen />
 
