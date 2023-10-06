@@ -16,9 +16,9 @@ const state = reactive({
 
 onMounted(() => {
   axios
-    .get("src/assets/about/cv.md")
+    .get("./assets/about/cv.md")
     .then((response) => {
-      state.markdownContent = response.data; // Update the reactive property with the raw Markdown content
+      state.markdownContent = response.data;
     })
     .catch((error) => {
       console.error("Error loading Markdown file:", error);
