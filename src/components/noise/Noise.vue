@@ -7,7 +7,7 @@ export default {
   },
   methods: {
     generateNoise() {
-      this.noise = document.createElement("canvas");
+      /* this.noise = document.createElement("canvas");
       this.noise.height = window.innerHeight * 2;
       this.noise.width = window.innerWidth * 2;
 
@@ -23,10 +23,10 @@ export default {
         buffer32[len] = Math.random() < 0.5 ? 0 : -1 >> 0;
       }
 
-      noiseContext.putImageData(noiseData, 0, 0);
+      noiseContext.putImageData(noiseData, 0, 0); */
     },
     moveNoise() {
-      let canvas = this.$refs.canvas;
+      /* let canvas = this.$refs.canvas;
       let context = canvas.getContext("2d");
       let x = Math.random() * canvas.width;
       let y = Math.random() * canvas.height;
@@ -34,15 +34,15 @@ export default {
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(this.noise, -x, -y);
 
-      requestAnimationFrame(this.moveNoise);
+      requestAnimationFrame(this.moveNoise); */
     },
   },
   mounted() {
-    this.$refs.canvas.height = window.innerHeight;
+    /* this.$refs.canvas.height = window.innerHeight;
     this.$refs.canvas.width = window.innerWidth;
     this.generateNoise();
 
-    requestAnimationFrame(this.moveNoise);
+    requestAnimationFrame(this.moveNoise); */
   },
 };
 </script>
