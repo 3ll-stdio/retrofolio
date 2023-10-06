@@ -18,7 +18,9 @@ import { Header, Footer } from "@components";
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@use "../../styles/breakpoints.scss" as *;
+
 .screen {
   display: flex;
   flex-direction: column;
@@ -50,11 +52,16 @@ import { Header, Footer } from "@components";
 
 .view {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
   flex-grow: 1;
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  
+  @include lg {
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
 }
 </style>

@@ -7,15 +7,21 @@ defineProps<{
 </script>
 
 <template>
-  <div v-html="marked.parse(source)" class="markdown" />
+  <div class="markdown-container">
+    <div v-html="marked.parse(source)" class="markdown" />
+  </div>
 </template>
 
 <style lang="scss">
-.markdown {
+.markdown-container {
+  height: 100%;
   padding: var(--spacing-2xl);
+  overflow-y: auto;
+}
 
+.markdown {
   * {
-    padding: revert; 
+    padding: revert;
     margin: revert;
   }
 

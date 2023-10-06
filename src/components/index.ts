@@ -9,3 +9,5 @@ export * from "./time-and-date";
 export * from "./screen";
 export * from "./window";
 export * from "./markdown";
+export * from "./display-img";
+export * from "./file-explorer";

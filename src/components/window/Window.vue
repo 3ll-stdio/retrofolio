@@ -46,7 +46,6 @@ defineProps<{
   flex-direction: column;
   align-items: stretch;
   width: 100%;
-  height: 100%;
   overflow: hidden;
 }
 
@@ -91,7 +90,7 @@ defineProps<{
   height: 100%;
   border-left: 2px solid var(--elevation-8);
   border-right: 2px solid var(--elevation-8);
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .info {
