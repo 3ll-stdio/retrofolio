@@ -10,5 +10,5 @@ export default defineConfig({
       "@domain": "src/domain/index.ts",
     },
   },
-  base: "/retrofolio/",
+  base: "/",
 });
