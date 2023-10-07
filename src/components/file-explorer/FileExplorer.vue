@@ -45,8 +45,8 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <table class="file-explorer">
+  <div class="file-explorer">
+    <table>
       <thead>
         <tr>
           <th class="p3">File Name</th>
@@ -78,13 +78,13 @@ export default {
 </template>
 
 <style scoped lang="scss">
-.container {
+.file-explorer {
   width: 100%;
   height: 100%;
   overflow-y: auto;
 }
 
-.file-explorer {
+table {
   width: 100%;
   border-collapse: collapse;
 }
@@ -105,15 +105,19 @@ tbody tr {
 
   &:hover,
   &:focus {
-    background-color: var(--primary-5);
-  }
-
-  &:active {
-    background-color: var(--primary-4);
+    background-color: var(--primary-9);
   }
 
   &:hover td,
   &:focus td {
+    color: var(--primary-2);
+  }
+
+  &:active {
+    background-color: var(--primary-5);
+  }
+
+  &:active td {
     color: var(--elevation-11);
   }
 }
@@ -144,8 +148,23 @@ td {
 
 .active {
   background-color: var(--primary-5);
+
   & td {
     color: var(--elevation-11);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--primary-5);
+  }
+
+  &:hover td,
+  &:focus td {
+    color: var(--elevation-11);
+  }
+
+  &:active {
+    background-color: var(--primary-5);
   }
 }
 </style>

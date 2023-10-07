@@ -5,21 +5,25 @@ defineProps<{
 </script>
 
 <template>
-  <div class="container">
-    <img :src="source" class="display-img" />
+  <div class="display-img">
+    <img :src="source" />
   </div>
 </template>
 
 <style scoped lang="scss">
 @use "src/styles/breakpoints.scss" as *;
 
-.container {
+.display-img {
   width: 100%;
   height: 25rem;
   padding: var(--spacing-md);
+
+  @include lg {
+    height: 100%;
+  }
 }
 
-.display-img {
+.display-img img {
   width: 100%;
   height: 100%;
   border-radius: var(--radius-md);

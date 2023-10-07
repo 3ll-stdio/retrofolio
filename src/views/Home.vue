@@ -33,7 +33,7 @@ const files = [
     name: "project-1",
     owner: "Team A",
     type: "Markdown",
-    date: "05/08/2023",
+    date: "05-08-2023",
   },
   {
     url: "./assets/home/file-2/readme.md",
@@ -41,7 +41,7 @@ const files = [
     name: "project-2",
     owner: "Team B",
     type: "Markdown",
-    date: "05/08/2023",
+    date: "05-08-2023",
   },
   {
     url: "./assets/home/file-3/readme.md",
@@ -49,7 +49,7 @@ const files = [
     name: "project-3",
     owner: "Team B",
     type: "Markdown",
-    date: "05/08/2023",
+    date: "05-08-2023",
   },
   {
     url: "./assets/home/file-4/readme.md",
@@ -57,7 +57,7 @@ const files = [
     name: "project-4",
     owner: "Team C",
     type: "Markdown",
-    date: "05/08/2023",
+    date: "05-08-2023",
   },
 ];
 
@@ -86,7 +86,7 @@ const handleFileChange = (file: IFile) => {
     </Window>
 
     <div class="right">
-      <Window :file="displayImg.fileInfo">
+      <Window :file="displayImg.fileInfo" class="display-img">
         <DisplayImg :source="displayImg.src" />
       </Window>
 
@@ -101,17 +101,17 @@ const handleFileChange = (file: IFile) => {
 @use "src/styles/breakpoints.scss" as *;
 
 .view-container {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-md);
   padding: var(--spacing-md);
   width: 100%;
-  height: 100%;
   overflow-y: auto;
-  
+
   @include lg {
-    grid-template-columns: 1fr 1fr;
+    flex-direction: row;
     overflow: hidden;
+    height: 100%;
   }
 }
 
@@ -123,23 +123,28 @@ const handleFileChange = (file: IFile) => {
   }
 }
 
-.file-explorer {
-  flex-grow: 1;
-  max-height: 24rem;
-
-  @include lg {
-    max-height: auto;
-  }
-}
-
 .right {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
   height: 100%;
+  width: 100%;
+}
+
+.display-img {
+  @include lg {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 60%;
+  }
+}
+
+.file-explorer {
+  height: 25rem;
 
   @include lg {
-    grid-column: 2 / 3;
+    flex-grow: 1;
+    height: auto;
   }
 }
 </style>
