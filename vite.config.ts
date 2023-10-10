@@ -8,6 +8,7 @@ export default defineConfig({
     alias: {
       "@components": "src/components/index.ts",
       "@domain": "src/domain/index.ts",
+      "@content": "src/content/index.ts",
     },
   },
   base: "/",

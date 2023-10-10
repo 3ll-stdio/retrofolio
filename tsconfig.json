@@ -24,7 +24,8 @@
     "baseUrl": ".",
     "paths": {
       "@components": ["src/components/index.ts"],
-      "@domain": ["src/domain/index.ts"]
+      "@domain": ["src/domain/index.ts"],
+      "@content": ["src/content/index.ts"]
     }
   },
   "include": ["src"],

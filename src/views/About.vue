@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import { reactive, onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import axios from "axios";
 import { Window, Markdown } from "@components";
+import { IWindow } from "@domain";
 
-const state = reactive({
-  markdownContent: "",
-  fileInfo: {
-    title: "CV.md",
-    directory: "~/About/CV.md",
-    type: "Markdown",
-    size: "83KB",
-    date: "05/10/2023",
-  },
-});
+const readme = ref("");
+
+const metaInfo: IWindow = {
+  name: "CV.md",
+  directory: "~/About/CV.md",
+  type: "Markdown",
+  size: "83KB",
+  date: "05/10/2023",
+};
 
 onMounted(() => {
   axios
     .get("./assets/about/cv.md")
     .then((response) => {
-      state.markdownContent = response.data;
+      readme.value = response.data;
     })
     .catch((error) => {
       console.error("Error loading Markdown file:", error);
@@ -28,8 +28,8 @@ onMounted(() => {
 
 <template>
   <div class="view-container">
-    <Window :file="state.fileInfo" class="cv">
-      <Markdown :source="state.markdownContent" />
+    <Window :file="metaInfo" class="cv">
+      <Markdown :source="readme" />
     </Window>
   </div>
 </template>

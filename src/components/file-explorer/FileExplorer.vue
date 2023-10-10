@@ -1,47 +1,46 @@
-<script lang="ts">
+<script setup lang="ts">
+import { onMounted } from "vue";
 import { IFile } from "@domain";
+import { files } from "@content";
 
-export default {
-  name: "FileExplorer",
-  props: {
-    files: {
-      type: Array<IFile>,
-      required: true,
-    },
-    handleFileChange: {
-      type: Function,
-      required: true,
-    },
-  },
-  methods: {
-    handleClick(file: IFile, event: Event) {
-      const activeElement = document.querySelector(".active");
-      if (activeElement) {
-        activeElement.classList.remove("active");
-      }
+const emits = defineEmits(["handleFileChange"]);
+const filesArray: IFile[] = Object.values(files);
 
-      const target = event.currentTarget as HTMLElement;
-      target.classList.add("active");
+const handleClick = (file: IFile, index: number) => {
+  const activeElement = document.querySelector(".file-explorer .active");
+  if (activeElement) activeElement.classList.remove("active");
 
-      this.handleFileChange(file);
-    },
-    handleArrowNavigation(index: number, direction: string, event: Event) {
-      event.preventDefault();
-      const newIndex = direction === "up" ? index - 1 : index + 1;
-      const filesCount = this.files.length;
-      const validIndex = (newIndex + filesCount) % filesCount;
+  const target = document.querySelector(
+    `.file-explorer tr[data-file-index="${index}"]`
+  );
+  if (target) target.classList.add("active");
 
-      const focusedElement = document.activeElement as HTMLElement;
-      if (focusedElement) focusedElement.blur();
-
-      const target = document.querySelector(
-        `.file-explorer tr[data-file-index="${validIndex.toString()}"]`
-      ) as HTMLElement;
-
-      if (target) target.focus();
-    },
-  },
+  emits("handleFileChange", file);
 };
+
+const handleArrowNavigation = (
+  index: number,
+  direction: string,
+  event: Event
+) => {
+  event.preventDefault();
+  const newIndex = direction === "up" ? index - 1 : index + 1;
+  const filesCount = filesArray.length;
+  const validIndex = (newIndex + filesCount) % filesCount;
+
+  const focusedElement = document.activeElement as HTMLElement;
+  if (focusedElement) focusedElement.blur();
+
+  const target = document.querySelector(
+    `.file-explorer tr[data-file-index="${validIndex.toString()}"]`
+  ) as HTMLElement;
+
+  if (target) target.focus();
+};
+
+onMounted(() => {
+  handleClick(filesArray[0], 0);
+});
 </script>
 
 <template>
@@ -57,20 +56,19 @@ export default {
       </thead>
       <tbody>
         <tr
-          v-for="(file, index) in files"
+          v-for="(file, index) in filesArray"
           :key="index"
-          @click="handleClick(file, $event)"
-          @keyup.enter="handleClick(file, $event)"
-          @keyup.up="handleArrowNavigation(index, 'up', $event)"
-          @keyup.down="handleArrowNavigation(index, 'down', $event)"
+          @click="handleClick(file, index)"
+          @keyup.enter="handleClick(file, index)"
+          @keyup.up="handleArrowNavigation(index as number, 'up', $event)"
+          @keyup.down="handleArrowNavigation(index as number, 'down', $event)"
           :data-file-index="index"
-          :class="index ? '' : 'active'"
           tabindex="0"
         >
           <td>{{ file.name }}</td>
-          <td>{{ file.owner }}</td>
-          <td>{{ file.type }}</td>
-          <td>{{ file.date }}</td>
+          <td>{{ file.metaInfo.owner }}</td>
+          <td>{{ file.metaInfo.type }}</td>
+          <td>{{ file.metaInfo.date }}</td>
         </tr>
       </tbody>
     </table>

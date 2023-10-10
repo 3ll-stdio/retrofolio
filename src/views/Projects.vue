@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ProjectCard } from "@components";
+import { projects } from "@content";
 </script>
 
 <template>
@@ -26,17 +27,12 @@ import { ProjectCard } from "@components";
       </div>
 
       <ul class="projects-list">
-        <li class="project-item">
-          <ProjectCard link="#" />
-        </li>
-        <li class="project-item">
-          <ProjectCard link="#" />
-        </li>
-        <li class="project-item">
-          <ProjectCard link="#" />
-        </li>
-        <li class="project-item">
-          <ProjectCard link="#" />
+        <li
+          v-for="(project, index) in projects"
+          :key="index"
+          class="project-item"
+        >
+          <ProjectCard :link="`projects/${project}`" />
         </li>
       </ul>
     </div>

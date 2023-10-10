@@ -1,19 +1,15 @@
 <script setup lang="ts">
+import { IWindow } from "@domain";
+
 defineProps<{
-  file: {
-    title: string;
-    directory: string;
-    type: string;
-    size: string;
-    date: string;
-  };
+  file: IWindow;
 }>();
 </script>
 
 <template>
   <div class="window">
     <div class="window-header">
-      <p class="p3 header-title">{{ file.title }}</p>
+      <p class="p3 header-title">{{ file.name }}</p>
 
       <div class="utils">
         <div class="circle"></div>

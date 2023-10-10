@@ -1,2 +1,2 @@
-export * from "./logos";
-export * from "./file";
+export * from "./entities";
+export * from "./enums";
