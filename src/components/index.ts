@@ -12,3 +12,5 @@ export * from "./markdown";
 export * from "./display-img";
 export * from "./file-explorer";
 export * from "./project-card";
+export * from "./carousel";
+export * from "./warning";

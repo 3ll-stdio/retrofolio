@@ -12,7 +12,7 @@ export const projects: IProjects = {
       tags: ["Photoshop", "Illustrator", "Figma"],
     },
     display: {
-      src: "",
+      src: "/assets/projects/project-1/readme.md",
       metaInfo: {
         name: "CV.md",
         directory: "~/About/CV.md",
@@ -22,7 +22,16 @@ export const projects: IProjects = {
       },
     },
     carousel: {
-      images: [],
+      images: [
+        "/assets/projects/project-1/images/img-1.png",
+        "/assets/projects/project-1/images/img-1.png",
+        "/assets/projects/project-1/images/img-1.png",
+        "/assets/projects/project-1/images/img-1.png",
+        "/assets/projects/project-1/images/img-1.png",
+        "/assets/projects/project-1/images/img-1.png",
+        "/assets/projects/project-1/images/img-1.png",
+        "/assets/projects/project-1/images/img-1.png",
+      ],
       metaInfo: {
         name: "CV.md",
         directory: "~/About/CV.md",
@@ -32,7 +41,17 @@ export const projects: IProjects = {
       },
     },
     warning: {
-      links: [],
+      message: "** Look here for more info **",
+      links: [
+        {
+          name: "Website",
+          url: "/",
+        },
+        {
+          name: "Github repo",
+          url: "/",
+        },
+      ],
       metaInfo: {
         name: "CV.md",
         directory: "~/About/CV.md",
@@ -53,7 +72,7 @@ export const projects: IProjects = {
       tags: ["HTML/CSS", "Vue", "Typescript"],
     },
     display: {
-      src: "",
+      src: "/assets/projects/project-2/readme.md",
       metaInfo: {
         name: "CV.md",
         directory: "~/About/CV.md",
@@ -63,7 +82,16 @@ export const projects: IProjects = {
       },
     },
     carousel: {
-      images: [],
+      images: [
+        "/assets/projects/project-2/images/img-1.png",
+        "/assets/projects/project-2/images/img-1.png",
+        "/assets/projects/project-2/images/img-1.png",
+        "/assets/projects/project-2/images/img-1.png",
+        "/assets/projects/project-2/images/img-1.png",
+        "/assets/projects/project-2/images/img-1.png",
+        "/assets/projects/project-2/images/img-1.png",
+        "/assets/projects/project-2/images/img-1.png",
+      ],
       metaInfo: {
         name: "CV.md",
         directory: "~/About/CV.md",
@@ -73,7 +101,17 @@ export const projects: IProjects = {
       },
     },
     warning: {
-      links: [],
+      message: "** Look here for more info **",
+      links: [
+        {
+          name: "Website",
+          url: "/",
+        },
+        {
+          name: "Github repo",
+          url: "/",
+        },
+      ],
       metaInfo: {
         name: "CV.md",
         directory: "~/About/CV.md",
@@ -94,7 +132,7 @@ export const projects: IProjects = {
       tags: ["React", "Typescript"],
     },
     display: {
-      src: "",
+      src: "/assets/projects/project-3/readme.md",
       metaInfo: {
         name: "CV.md",
         directory: "~/About/CV.md",
@@ -104,7 +142,16 @@ export const projects: IProjects = {
       },
     },
     carousel: {
-      images: [],
+      images: [
+        "/assets/projects/project-3/images/img-1.png",
+        "/assets/projects/project-3/images/img-1.png",
+        "/assets/projects/project-3/images/img-1.png",
+        "/assets/projects/project-3/images/img-1.png",
+        "/assets/projects/project-3/images/img-1.png",
+        "/assets/projects/project-3/images/img-1.png",
+        "/assets/projects/project-3/images/img-1.png",
+        "/assets/projects/project-3/images/img-1.png",
+      ],
       metaInfo: {
         name: "CV.md",
         directory: "~/About/CV.md",
@@ -114,7 +161,17 @@ export const projects: IProjects = {
       },
     },
     warning: {
-      links: [],
+      message: "** Look here for more info **",
+      links: [
+        {
+          name: "Website",
+          url: "/",
+        },
+        {
+          name: "Github repo",
+          url: "/",
+        },
+      ],
       metaInfo: {
         name: "CV.md",
         directory: "~/About/CV.md",

@@ -2,11 +2,11 @@
 import { onMounted, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
-import { Window, Markdown } from "@components";
+import { Window, Markdown, Carousel, Warning } from "@components";
 import { projects } from "@content";
 import { IProject } from "@domain";
 
-let readme = ref("");
+let display = ref("");
 let activeProject = reactive(projects[Object.keys(projects)[0]]);
 
 onMounted(() => {
@@ -14,9 +14,9 @@ onMounted(() => {
   activeProject = projects[id] as IProject;
 
   axios
-    .get(activeProject.readme.src)
+    .get(activeProject.display.src)
     .then((response) => {
-      readme.value = response.data;
+      display.value = response.data;
     })
     .catch((error) => {
       console.error("Error loading Markdown file:", error);
@@ -27,13 +27,20 @@ onMounted(() => {
 <template>
   <div class="view-container">
     <div class="left">
-      <Window :file="activeProject.carousel.metaInfo" class="carousel"></Window>
+      <Window :file="activeProject.carousel.metaInfo" class="carousel-window">
+        <Carousel :images="activeProject.carousel.images" />
+      </Window>
 
-      <Window :file="activeProject.warning.metaInfo" class="warning"></Window>
+      <Window :file="activeProject.warning.metaInfo" class="warning-window">
+        <Warning
+          :message="activeProject.warning.message"
+          :links="activeProject.warning.links"
+        />
+      </Window>
     </div>
 
-    <Window :file="activeProject.readme.metaInfo" class="readme">
-      <Markdown :source="readme" />
+    <Window :file="activeProject.display.metaInfo" class="display-window">
+      <Markdown :source="display" />
     </Window>
   </div>
 </template>
@@ -47,11 +54,12 @@ onMounted(() => {
   gap: var(--spacing-md);
   padding: var(--spacing-md);
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
 
   @include lg {
     flex-direction: row;
+    overflow: hidden;
+    height: 100%;
   }
 }
 
@@ -60,18 +68,26 @@ onMounted(() => {
   flex-direction: column;
   gap: var(--spacing-md);
   width: 100%;
-  height: 100%;
+  height: max-content;
+  overflow: hidden;
+
+  @include lg {
+    height: 100%;
+  }
 }
 
-.carousel {
-  flex-basis: 70%;
+.carousel-window {
+  @include lg {
+    flex-grow: 1;
+  }
 }
 
-.warning {
-  flex-grow: 1;
-}
-
-.readme {
+.display-window {
   width: 100%;
+  height: 40rem;
+
+  @include lg {
+    height: 100%;
+  }
 }
 </style>

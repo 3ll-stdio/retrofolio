@@ -57,15 +57,15 @@ p,
   font-size: var(--text-lg);
 }
 
-.h5,
-.text-button {
+.h5 {
   font-size: var(--text-md);
 }
 
 .p1,
 .p1-medium,
 .p1-semibold,
-.text-nav {
+.text-nav,
+.text-button {
   font-size: var(--text-base);
 }
 
@@ -96,6 +96,7 @@ p,
 .p1-semibold,
 .p2-semibold,
 .p3-semibold,
-.text-nav {
+.text-nav,
+.text-button {
   font-weight: 600;
 }

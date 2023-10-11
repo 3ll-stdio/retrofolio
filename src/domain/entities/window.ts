@@ -36,6 +36,10 @@ export interface ICarousel {
 }
 
 export interface IWarning {
-  links: string[];
+  message: string;
+  links: {
+    name: string;
+    url: string;
+  }[];
   metaInfo: IWindow;
 }
