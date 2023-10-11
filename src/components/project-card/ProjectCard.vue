@@ -1,29 +1,27 @@
 <script setup lang="ts">
+import { IProjectCard } from "@domain";
+
 defineProps<{
-  link: string;
+  project: IProjectCard;
 }>();
 </script>
 
 <template>
-  <router-link :to="link" class="project-card">
+  <router-link :to="project.url" class="project-card">
     <div class="img-container">
-      <img src="/assets/projects/project-1/images/img-1.png" alt="" />
+      <img :src="project.image" alt="" />
     </div>
 
     <div class="project-info">
-      <h5 class="h4">Project Title</h5>
+      <h5 class="h4">{{ project.name }}</h5>
 
-      <p class="p1 project-description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat ipsum
-        volutpat porttitor nec ut augue. Tincidunt libero vestibulum massa ac
-        sagittis suscipit bibendum viverra rutrum.
-      </p>
+      <p class="p1 project-description">{{ project.description }}</p>
 
-      <div class="tags">
-        <p class="p2-medium tag">tag</p>
-        <p class="p2-medium tag">tag</p>
-        <p class="p2-medium tag">tag</p>
-      </div>
+      <ul class="tags">
+        <li v-for="(tag, index) in project.tags" :key="index" class="tag">
+          <p class="p2-medium">{{ tag }}</p>
+        </li>
+      </ul>
     </div>
   </router-link>
 </template>
@@ -77,6 +75,7 @@ defineProps<{
   flex-direction: row;
   flex-wrap: wrap;
   gap: var(--spacing-2xs);
+  padding-top: var(--spacing-xs);
 }
 
 .tag {

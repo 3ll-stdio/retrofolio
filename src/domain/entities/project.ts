@@ -1,21 +1,21 @@
-import { IWindow } from "./window";
+import { ICarousel, IDisplay, IWarning } from "./window";
 
 export interface IProject {
   name: string;
-  readme: {
-    src: string;
-    metaInfo: IWindow;
-  };
-  carousel: {
-    images: string[];
-    metaInfo: IWindow;
-  };
-  warning: {
-    links: string[];
-    metaInfo: IWindow;
-  };
+  card: IProjectCard;
+  display: IDisplay;
+  carousel: ICarousel;
+  warning: IWarning;
 }
 
 export interface IProjects {
   [key: string]: IProject;
+}
+
+export interface IProjectCard {
+  name: string;
+  description: string;
+  image: string;
+  url: string;
+  tags: string[];
 }

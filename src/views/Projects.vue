@@ -32,7 +32,7 @@ import { projects } from "@content";
           :key="index"
           class="project-item"
         >
-          <ProjectCard :link="`projects/${project}`" />
+          <ProjectCard :project="project.card" />
         </li>
       </ul>
     </div>

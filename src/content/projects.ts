@@ -3,7 +3,15 @@ import { IProjects } from "@domain";
 export const projects: IProjects = {
   "project-1": {
     name: "Project 1",
-    readme: {
+    card: {
+      name: "Project 1",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat ipsum volutpat porttitor nec ut augue. Tincidunt libero vestibulum massa ac sagittis suscipit bibendum viverra rutrum.",
+      image: "/assets/projects/project-1/images/img-1.png",
+      url: "/projects/project-1",
+      tags: ["Photoshop", "Illustrator", "Figma"],
+    },
+    display: {
       src: "",
       metaInfo: {
         name: "CV.md",
@@ -36,7 +44,15 @@ export const projects: IProjects = {
   },
   "project-2": {
     name: "Project 2",
-    readme: {
+    card: {
+      name: "Project 2",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat ipsum volutpat porttitor nec ut augue. Tincidunt libero vestibulum massa ac sagittis suscipit bibendum viverra rutrum.",
+      image: "/assets/projects/project-1/images/img-1.png",
+      url: "/projects/project-2",
+      tags: ["HTML/CSS", "Vue", "Typescript"],
+    },
+    display: {
       src: "",
       metaInfo: {
         name: "CV.md",
@@ -69,7 +85,15 @@ export const projects: IProjects = {
   },
   "project-3": {
     name: "Project 3",
-    readme: {
+    card: {
+      name: "Project 3",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Placerat ipsum volutpat porttitor nec ut augue. Tincidunt libero vestibulum massa ac sagittis suscipit bibendum viverra rutrum.",
+      image: "/assets/projects/project-1/images/img-1.png",
+      url: "/projects/project-3",
+      tags: ["React", "Typescript"],
+    },
+    display: {
       src: "",
       metaInfo: {
         name: "CV.md",
