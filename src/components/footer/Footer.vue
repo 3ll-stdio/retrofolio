@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ThemeSelector, TimeAndDate } from "@components";
+import { ThemeSelector, TimeAndDate, NoiseSelector } from "@components";
 </script>
 
 <template>
   <footer>
     <div class="row top">
       <div class="col">
-        <ThemeSelector></ThemeSelector>
+        <ThemeSelector />
+        <NoiseSelector />
       </div>
 
       <div class="col time-and-date">

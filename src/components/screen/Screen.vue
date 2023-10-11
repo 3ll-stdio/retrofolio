@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Header, Footer } from "@components";
+import { Header, Footer, Noise } from "@components";
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import { Header, Footer } from "@components";
 
     <div class="shadow"></div>
 
-    <!-- <Noise class="noise" /> -->
+    <Noise />
   </div>
 </template>
 
