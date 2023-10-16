@@ -22,6 +22,10 @@ const toggleDropdown = () => {
   isOpen.value = !isOpen.value;
 };
 
+const closeDropdown = () => {
+  isOpen.value = false;
+};
+
 onMounted(() => {
   handleNoiseChange(noises[0]);
 });
@@ -29,7 +33,11 @@ onMounted(() => {
 
 <template>
   <div class="noise-selector">
-    <button class="noise-selector-btn" @click="toggleDropdown">
+    <button
+      class="noise-selector-btn"
+      @click="toggleDropdown"
+      :style="isOpen ? 'z-index: 60' : ''"
+    >
       <img class="circle" :src="activeNoise" />
     </button>
 
@@ -43,6 +51,8 @@ onMounted(() => {
         <img :src="noise" :alt="`Noise ${index}`" />
       </li>
     </ul>
+
+    <div v-show="isOpen" class="backdrop" @click="closeDropdown" />
   </div>
 </template>
 
@@ -61,9 +71,10 @@ onMounted(() => {
   color: var(--elevation-4);
   user-select: none;
   transition: background-color var(--duration-1) var(--easing-1);
+  position: relative;
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     background-color: var(--elevation-7);
   }
 
@@ -89,6 +100,7 @@ onMounted(() => {
   background-color: var(--elevation-8);
   border-radius: var(--radius-xs);
   overflow: hidden;
+  z-index: 60;
 }
 
 .noise-option {
@@ -111,5 +123,18 @@ onMounted(() => {
   height: var(--spacing-md);
   aspect-ratio: 1 / 1;
   border-radius: var(--radius-circle);
+}
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
 }
 </style>
