@@ -13,8 +13,10 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .logo {
+  display: inline-flex;
+  align-items: center;
   aspect-ratio: 1 / 1;
 }
 </style>
