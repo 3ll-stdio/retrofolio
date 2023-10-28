@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 import axios from "axios";
 import { Window, Markdown, DisplayImg, FileExplorer } from "@components";
 import { IFile } from "@domain";
 import { fileExplorer, files } from "@content";
 
-const activeFile = reactive(files[Object.keys(files)[0]]);
+const activeFile = ref(files[Object.keys(files)[0]]);
 const displayContent = ref("");
 
 const handleFileChange = (file: IFile) => {
-  activeFile.image.src = file.image.src;
+  activeFile.value = file;
 
   axios
-    .get(file.display.src)
+    .get(activeFile.value.display.src)
     .then((response) => {
       displayContent.value = response.data;
     })
