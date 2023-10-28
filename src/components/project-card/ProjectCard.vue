@@ -68,6 +68,12 @@ defineProps<{
 
 .project-description {
   color: var(--elevation-4);
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 7em;
 }
 
 .tags {

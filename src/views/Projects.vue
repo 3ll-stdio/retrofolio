@@ -8,9 +8,9 @@ import { projects } from "@content";
     <div class="projects-wrapper">
       <div class="header">
         <p class="intro">
-          3LL STDIO INDUSTRIES UNIFIED OPERATING SYSTEM
+          3ll STDIO INDUSTRIES UNIFIED OPERATING SYSTEM
           <br />
-          COPYRIGHT 2075-2077 ROBCO INDUSTRIES
+          COPYRIGHT 3035-3037 3ll STDIO INDUSTRIES
           <br />
           -Server 1-
         </p>
@@ -73,5 +73,12 @@ import { projects } from "@content";
   align-items: center;
   padding-top: var(--spacing-xl);
   padding-bottom: var(--spacing-9xl);
+}
+
+.project-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 </style>
