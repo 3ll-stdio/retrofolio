@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ThemeSelector, TimeAndDate, NoiseSelector } from "@components";
+
+const currentYear = new Date().getFullYear();
 </script>
 
 <template>
@@ -17,11 +19,15 @@ import { ThemeSelector, TimeAndDate, NoiseSelector } from "@components";
 
     <div class="row bottom">
       <div class="col copyrights">
-        <p class="p2">Copyright (c) 2023 Retrofolio by 3ll</p>
+        <p class="p2">
+          Copyright (c) {{ currentYear }}
+          <a href="https://retrofolio.3ll.gr">Retrofolio</a> by
+          <a href="https://3ll.gr">3ll</a>
+        </p>
       </div>
 
       <div class="col social">
-        <a href="mailto:example@email.com">
+        <a href="#">
           <p class="p2-medium">&lt;example@email.com&gt;</p>
         </a>
         <a href="#">
@@ -78,6 +84,10 @@ footer {
 .time-and-date,
 .copyrights {
   padding: var(--spacing-2xs) var(--spacing-xs);
+
+  a {
+    display: inline;
+  }
 }
 
 .time-and-date,
