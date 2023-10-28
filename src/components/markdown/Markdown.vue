@@ -33,8 +33,24 @@ defineProps<{
   }
 
   img {
-    user-select: revert;
-    pointer-events: revert;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--elevation-8);
+  }
+
+  h {
+    color: var(--elevation-1);
+  }
+
+  p,
+  li {
+    color: var(--elevation-2);
+  }
+
+  ul,
+  ol {
+    padding-left: var(--spacing-2xl);
   }
 
   li {
@@ -42,11 +58,25 @@ defineProps<{
   }
 
   a {
-    color: revert;
+    color: var(--primary-5);
     outline: revert;
     text-decoration: revert;
     cursor: revert;
     display: revert;
+    transition: color var(--duration-1) var(--easing-1);
+
+    strong {
+      color: inherit;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--primary-4);
+    }
+
+    &:active {
+      color: var(--primary-3);
+    }
   }
 
   button {
@@ -69,7 +99,48 @@ defineProps<{
   }
 
   hr {
-    border: revert;
+    width: 100%;
+    height: 1px;
+    background-color: var(--elevation-8);
+  }
+
+  blockquote {
+    margin: 0;
+    padding-left: var(--spacing-md);
+    border-left: 2px solid var(--elevation-8);
+    color: var(--elevation-3);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    strong {
+      color: var(--elevation-1);
+    }
+  }
+
+  strong {
+    color: var(--elevation-1);
+  }
+
+  code {
+    font-size: var(--text-sm);
+    color: var(--primary-4);
+    background-color: var(--primary-10);
+    border: 1px solid var(--primary-8);
+    border-radius: 0.2rem;
+    padding: 0 var(--spacing-2xs);
+  }
+
+  pre code {
+    font-size: var(--text-sm);
+    color: revert;
+    background-color: var(--elevation-11);
+    border: 1px solid var(--elevation-8);
+    border-radius: var(--radius-xs);
+    padding: var(--spacing-md);
   }
 }
 </style>
