@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import axios from "axios";
 import { Window, Markdown, Carousel, Warning } from "@components";
 import { projects } from "@content";
 import { IProject } from "@domain";
 
-let display = ref("");
-let activeProject = reactive(projects[Object.keys(projects)[0]]);
+const display = ref("");
+const activeProject = ref<IProject>(projects[Object.keys(projects)[0]]);
 
 onMounted(() => {
   const id = useRoute().params.id as string;
-  activeProject = projects[id] as IProject;
+  activeProject.value = projects[id] as IProject;
 
   axios
-    .get(activeProject.display.src)
+    .get(activeProject.value.display.src)
     .then((response) => {
       display.value = response.data;
     })
