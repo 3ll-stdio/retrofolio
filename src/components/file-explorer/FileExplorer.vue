@@ -65,7 +65,7 @@ onMounted(() => {
           :data-file-index="index"
           tabindex="0"
         >
-          <td>{{ file.name }}</td>
+          <td>{{ file.metaInfo.name }}</td>
           <td>{{ file.metaInfo.owner }}</td>
           <td>{{ file.metaInfo.type }}</td>
           <td>{{ file.metaInfo.date }}</td>
