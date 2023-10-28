@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watchEffect } from "vue";
 import { ICarousel } from "@domain";
 
 const props = defineProps<{
@@ -37,11 +37,18 @@ const handleArrowNavigation = (
     `.carousel-imgs img[data-image-index="${validIndex.toString()}"]`
   ) as HTMLElement;
 
-  if (target) target.focus();
+  if (target) {
+    target.focus();
+    target.click();
+  }
 };
 
 onMounted(() => {
   handleClick(props.images[0], 0);
+});
+
+watchEffect(() => {
+  activeImage.value = props.images[0];
 });
 </script>
 
@@ -96,6 +103,7 @@ onMounted(() => {
   border-radius: var(--radius-md);
   background-color: var(--primary-1);
   object-fit: cover;
+  border: 1px solid var(--elevation-8);
 }
 
 .carousel-imgs {
