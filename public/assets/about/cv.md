@@ -2,7 +2,7 @@
 
 **Front-End Developer**
 
-[LinkedIn](#) | [GitHub](#) | [Email](#) | [Portfolio](#)
+[LinkedIn]() | [GitHub]() | [Email]() | [Portfolio]()
 
 ---
 

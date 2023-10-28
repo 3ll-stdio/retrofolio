@@ -22,8 +22,8 @@ To get started with Project 3, follow the steps below:
 
 ## Support
 
-For support and bug reporting, please create an issue on the [GitHub repository](https://github.com/project3/repo).
+For support and bug reporting, please create an issue on the [GitHub repository]().
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE]() file for details.
