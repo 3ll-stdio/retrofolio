@@ -23,17 +23,10 @@ import { Logo } from "@components";
 
 .outer,
 .inner {
+  padding: var(--spacing-2xs);
   width: max-content;
   height: max-content;
   border-radius: var(--radius-circle);
-}
-
-.outer {
-  padding: var(--spacing-2xs);
-}
-
-.inner {
-  padding: var(--spacing-xs);
 }
 
 .outer {

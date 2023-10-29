@@ -15,7 +15,7 @@ defineProps<{
 
 <style scoped lang="scss">
 .logo {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   aspect-ratio: 1 / 1;
 }
