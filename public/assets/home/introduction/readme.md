@@ -1,8 +1,10 @@
 # Retrofolio: Your Stylish Portfolio Redefined
 
-🎉 Welcome to Retrofolio, where vintage charm meets modern elegance! 🎉
+**🎉 Welcome to Retrofolio, where vintage charm meets modern elegance! 🎉**
 
 Are you ready to take your portfolio to the next level? Look no further! Retrofolio offers you a unique and stylish template to showcase your talent and creativity in a way that stands out from the crowd.
+
+_If you're interested in making this template yours, feel free to get in touch. Reach out to us at [3ll.stdio@mail.com](mailto:3ll.stdio@mail.com) and let's bring your website vision to life!"_
 
 ---
 
@@ -54,7 +56,7 @@ Once you're satisfied with your portfolio, launch it to the world! Share the lin
 
 ### Dive Into Our Repository Universe
 
-Explore 3LL, the imaginative force driving Retrofolio. Discover a curated selection of repositories, from cutting-edge tech experiments to captivating artwork, tailored just for you. Head to our GitHub profile for a world of innovation: 3LL on GitHub
+Explore 3LL, the imaginative force driving Retrofolio. Discover a curated selection of repositories, from cutting-edge tech experiments to captivating artwork, tailored just for you.
 
 ### Stay in the Creative Loop
 
