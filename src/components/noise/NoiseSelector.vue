@@ -1,20 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { NOISES } from "@domain";
+import { computed, ref } from "vue";
+import { NOISE_PRESET_OPTIONS, NOISE_PRESETS, type NoisePresetOption } from "@domain";
+import { useNoisePreset } from "../../composables/useNoisePreset";
 
-const noises: string[] = Object.values(NOISES).map(
-  (noise) => `/assets/noises/${noise}.gif`
-);
+const presets: NoisePresetOption[] = NOISE_PRESET_OPTIONS;
 
 const isOpen = ref(false);
-const activeNoise = ref(noises[0]);
+const { activeNoisePreset, setNoisePreset } = useNoisePreset();
 
-const handleNoiseChange = (noise: string) => {
-  activeNoise.value = noise;
-
-  const noiseHTML = document.getElementById("noise") as HTMLImageElement;
-  if (noiseHTML) noiseHTML.src = noise;
-
+const handleNoiseChange = (preset: NOISE_PRESETS) => {
+  setNoisePreset(preset);
   isOpen.value = false;
 };
 
@@ -26,9 +21,8 @@ const closeDropdown = () => {
   isOpen.value = false;
 };
 
-onMounted(() => {
-  handleNoiseChange(noises[0]);
-});
+const dropdownId = "noise-dropdown";
+const activeNoise = computed(() => activeNoisePreset.value);
 </script>
 
 <template>
@@ -37,18 +31,28 @@ onMounted(() => {
       class="noise-selector-btn"
       @click="toggleDropdown"
       :style="isOpen ? 'z-index: 60' : ''"
+      :aria-expanded="isOpen"
+      :aria-controls="dropdownId"
+      aria-label="Select noise preset"
     >
-      <img class="circle" :src="activeNoise" />
+      <span class="circle" :class="`preset-${activeNoise}`" aria-hidden="true" />
     </button>
 
-    <ul v-show="isOpen" class="noise-dropdown">
+    <ul v-show="isOpen" :id="dropdownId" class="noise-dropdown" role="listbox">
       <li
-        v-for="(noise, index) in noises"
-        :key="index"
+        v-for="preset in presets"
+        :key="preset.value"
         class="noise-option"
-        @click="handleNoiseChange(noise)"
+        role="option"
       >
-        <img :src="noise" :alt="`Noise ${index}`" />
+        <button
+          type="button"
+          @click="handleNoiseChange(preset.value)"
+          :aria-selected="activeNoise === preset.value"
+          :aria-label="`Use ${preset.label.toLowerCase()} noise preset`"
+        >
+          <span class="circle" :class="`preset-${preset.value}`" aria-hidden="true" />
+        </button>
       </li>
     </ul>
 
@@ -88,7 +92,34 @@ onMounted(() => {
   height: var(--spacing-md);
   aspect-ratio: 1 / 1;
   border-radius: var(--radius-circle);
-  background-color: var(--primary-5);
+  border: 1px solid rgba(0, 0, 0, 0.35);
+}
+
+.preset-soft {
+  background-image: radial-gradient(circle at 30% 35%, #d1d1d1 0%, #8f8f8f 70%);
+}
+
+.preset-medium {
+  background-image: radial-gradient(circle at 35% 35%, #d8d8d8 0%, #686868 75%);
+}
+
+.preset-strong {
+  background-image: radial-gradient(circle at 30% 30%, #efefef 0%, #4a4a4a 75%);
+}
+
+.preset-flicker {
+  background-image: radial-gradient(circle at 35% 35%, #e4e4e4 0%, #5f5f5f 80%);
+}
+
+.preset-speckle {
+  background-color: #6a6a6a;
+  background-image:
+    radial-gradient(circle at 22% 28%, #efefef 0 1.1px, transparent 1.3px),
+    radial-gradient(circle at 68% 18%, #2e2e2e 0 1px, transparent 1.2px),
+    radial-gradient(circle at 42% 62%, #f2f2f2 0 1.2px, transparent 1.4px),
+    radial-gradient(circle at 78% 72%, #1f1f1f 0 1.1px, transparent 1.3px),
+    radial-gradient(circle at 18% 78%, #d8d8d8 0 0.9px, transparent 1.1px),
+    radial-gradient(circle at 55% 40%, #3a3a3a 0 0.8px, transparent 1px);
 }
 
 .noise-dropdown {
@@ -111,18 +142,23 @@ onMounted(() => {
   pointer-events: all;
   border-top: var(--highlight-1);
   border-bottom: var(--shadow-1);
-
-  &:hover,
-  &:focus-visible {
-    background-color: var(--primary-5);
-  }
 }
 
-.noise-option img {
+.noise-option button {
+  display: inline-flex;
+  padding: var(--spacing-xs);
+  align-items: center;
+  gap: var(--spacing-2xs);
+}
+
+.noise-option:hover,
+.noise-option:focus-within {
+  background-color: var(--primary-5);
+}
+
+.noise-option .circle {
   width: var(--spacing-md);
   height: var(--spacing-md);
-  aspect-ratio: 1 / 1;
-  border-radius: var(--radius-circle);
 }
 
 .backdrop {

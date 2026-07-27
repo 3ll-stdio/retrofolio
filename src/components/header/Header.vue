@@ -4,24 +4,19 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 
-console.log(route, route.name)
-
 const pageTitle = computed(() => {
+  if (route.path.startsWith("/projects/")) {
+    const projectName = route.path.split("/").pop();
+    return projectName ? projectName.replace("-", " ").toUpperCase() : "Project";
+  }
+
   switch (route.path) {
-    case "/home":
+    case "/":
       return "Retrofolio's Official Site";
     case "/about":
       return "Retrofolio's Official CV";
     case "/projects":
       return "Retrofolio's Official Projects";
-    case "/projects/project-1":
-      return "Project 1";
-    case "/projects/project-2":
-      return "Project 2";
-    case "/projects/project-3":
-      return "Project 3";
-    case "/projects/project-4":
-      return "Project 4";
     default:
       return "Retrofolio's Official Site";
   }

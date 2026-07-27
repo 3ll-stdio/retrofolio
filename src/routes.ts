@@ -1,11 +1,15 @@
-import Home from "./views/Home.vue";
-import About from "./views/About.vue";
-import Projects from "./views/Projects.vue";
-import ProjectDetails from "./views/ProjectDetails.vue";
+import type { RouteRecordRaw } from "vue-router";
 
-export default [
-  { path: "/", component: Home },
-  { path: "/about", component: About },
-  { path: "/projects", component: Projects },
-  { path: "/projects/:id", component: ProjectDetails },
+const routes: RouteRecordRaw[] = [
+  { path: "/", name: "home", component: () => import("./views/Home.vue") },
+  { path: "/about", name: "about", component: () => import("./views/About.vue") },
+  { path: "/projects", name: "projects", component: () => import("./views/Projects.vue") },
+  {
+    path: "/projects/:id",
+    name: "project-details",
+    component: () => import("./views/ProjectDetails.vue"),
+  },
+  { path: "/:pathMatch(.*)*", redirect: "/" },
 ];
+
+export default routes;

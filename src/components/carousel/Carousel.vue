@@ -1,23 +1,16 @@
 <script setup lang="ts">
-import { ref, onMounted, watchEffect } from "vue";
-import { ICarousel } from "@domain";
+import { computed, ref, watch } from "vue";
+import { type ICarousel } from "../../domain";
 
 const props = defineProps<{
   images: ICarousel["images"];
 }>();
 
-const activeImage = ref(props.images[0]);
+const activeIndex = ref(0);
+const activeImage = computed(() => props.images[activeIndex.value] ?? "");
 
-const handleClick = (image: string, index: number) => {
-  const activeElement = document.querySelector(".carousel .active");
-  if (activeElement) activeElement.classList.remove("active");
-
-  const target = document.querySelector(
-    `.carousel-imgs img[data-image-index="${index}"]`
-  );
-  if (target) target.classList.add("active");
-
-  activeImage.value = image;
+const handleClick = (index: number) => {
+  activeIndex.value = index;
 };
 
 const handleArrowNavigation = (
@@ -29,45 +22,36 @@ const handleArrowNavigation = (
   const newIndex = direction === "left" ? index - 1 : index + 1;
   const filesCount = props.images.length;
   const validIndex = (newIndex + filesCount) % filesCount;
-
-  const focusedElement = document.activeElement as HTMLElement;
-  if (focusedElement) focusedElement.blur();
-
-  const target = document.querySelector(
-    `.carousel-imgs img[data-image-index="${validIndex.toString()}"]`
-  ) as HTMLElement;
-
-  if (target) {
-    target.focus();
-    target.click();
-  }
+  activeIndex.value = validIndex;
 };
 
-onMounted(() => {
-  handleClick(props.images[0], 0);
-});
+watch(
+  () => props.images,
+  () => {
+    activeIndex.value = 0;
+  }
+);
 
-watchEffect(() => {
-  activeImage.value = props.images[0];
-});
+const imageAlt = (index: number) => `Project image ${index + 1}`;
 </script>
 
 <template>
   <div class="carousel">
     <div class="display-img">
-      <img :src="activeImage" />
+      <img :src="activeImage" :alt="imageAlt(activeIndex)" />
     </div>
     <div class="carousel-imgs">
       <img
         v-for="(image, index) in images"
         :key="index"
         :src="image"
-        alt=""
-        @click="handleClick(image, index)"
-        @keyup.enter="handleClick(image, index)"
+        :alt="imageAlt(index)"
+        @click="handleClick(index)"
+        @keyup.enter="handleClick(index)"
         @keyup.left="handleArrowNavigation(index as number, 'left', $event)"
         @keyup.right="handleArrowNavigation(index as number, 'right', $event)"
-        :data-image-index="index"
+        :class="{ active: activeIndex === index }"
+        :aria-selected="activeIndex === index"
         tabindex="0"
       />
     </div>
@@ -75,7 +59,7 @@ watchEffect(() => {
 </template>
 
 <style scoped lang="scss">
-@use "src/styles/breakpoints.scss" as *;
+@use "../../styles/breakpoints.scss" as *;
 
 .carousel {
   display: flex;

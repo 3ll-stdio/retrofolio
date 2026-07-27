@@ -1,24 +1,20 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import axios from "axios";
-import { Window, Markdown, DisplayImg, FileExplorer } from "@components";
-import { IFile } from "@domain";
-import { fileExplorer, files } from "@content";
+import { computed, ref } from "vue";
+import { Window } from "../components/window";
+import { Markdown } from "../components/markdown";
+import { DisplayImg } from "../components/display-img";
+import { FileExplorer } from "../components/file-explorer";
+import { type IFile } from "../domain";
+import { fileExplorer, files } from "../content";
+import { useMarkdownSource } from "../composables/useMarkdownSource";
 
-const activeFile = ref(files[Object.keys(files)[0]]);
-const displayContent = ref("");
+const filesArray = Object.values(files);
+const activeFile = ref(filesArray[0]);
+const activeDisplaySource = computed(() => activeFile.value.display.src);
+const { content: displayContent } = useMarkdownSource(activeDisplaySource);
 
 const handleFileChange = (file: IFile) => {
   activeFile.value = file;
-
-  axios
-    .get(activeFile.value.display.src)
-    .then((response) => {
-      displayContent.value = response.data;
-    })
-    .catch((error) => {
-      console.error("Error loading Markdown file:", error);
-    });
 };
 </script>
 
@@ -41,7 +37,7 @@ const handleFileChange = (file: IFile) => {
 </template>
 
 <style scoped lang="scss">
-@use "src/styles/breakpoints.scss" as *;
+@use "../styles/breakpoints.scss" as *;
 
 .view-container {
   display: flex;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import { THEMES } from "@domain";
+import { THEMES } from "../../domain";
 
 const themes: string[] = Object.values(THEMES).map((theme) => theme);
 
@@ -24,6 +24,8 @@ const closeDropdown = () => {
   isOpen.value = false;
 };
 
+const dropdownId = "theme-dropdown";
+
 onMounted(() => {
   handleThemeChange(themes[0]);
 });
@@ -35,18 +37,28 @@ onMounted(() => {
       class="theme-selector-btn"
       @click="toggleDropdown"
       :style="isOpen ? 'z-index: 60' : ''"
+      :aria-expanded="isOpen"
+      :aria-controls="dropdownId"
+      aria-label="Select theme"
     >
       <div class="circle active-theme" />
     </button>
 
-    <ul v-show="isOpen" class="theme-dropdown">
+    <ul v-show="isOpen" :id="dropdownId" class="theme-dropdown" role="listbox">
       <li
         v-for="(theme, index) in themes"
         :key="index"
         class="theme-option"
-        @click="handleThemeChange(theme)"
+        role="option"
       >
-        <div class="circle" :style="`background-color: var(--${theme}-5)`" />
+        <button
+          type="button"
+          @click="handleThemeChange(theme)"
+          :aria-label="`Use ${theme} theme`"
+          :aria-selected="activeTheme === theme"
+        >
+          <div class="circle" :style="`background-color: var(--${theme}-5)`" />
+        </button>
       </li>
     </ul>
 
@@ -112,11 +124,16 @@ onMounted(() => {
   pointer-events: all;
   border-top: var(--highlight-1);
   border-bottom: var(--shadow-1);
+}
 
-  &:hover,
-  &:focus-visible {
-    background-color: var(--primary-5);
-  }
+.theme-option button {
+  display: inline-flex;
+  padding: var(--spacing-xs);
+}
+
+.theme-option:hover,
+.theme-option:focus-within {
+  background-color: var(--primary-5);
 }
 
 .theme-option .circle {

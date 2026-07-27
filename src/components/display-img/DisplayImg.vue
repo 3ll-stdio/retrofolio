@@ -11,7 +11,7 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use "src/styles/breakpoints.scss" as *;
+@use "../../styles/breakpoints.scss" as *;
 
 .display-img {
   width: 100%;

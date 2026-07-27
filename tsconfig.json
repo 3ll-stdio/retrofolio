@@ -8,7 +8,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -23,9 +23,10 @@
 
     "baseUrl": ".",
     "paths": {
-      "@components": ["src/components/index.ts"],
-      "@domain": ["src/domain/index.ts"],
-      "@content": ["src/content/index.ts"]
+      "@/*": ["src/*"],
+      "@components": ["src/components"],
+      "@domain": ["src/domain"],
+      "@content": ["src/content"]
     }
   },
   "include": ["src"],

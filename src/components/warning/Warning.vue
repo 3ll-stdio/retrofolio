@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IWarning } from "@domain";
+import { type IWarning } from "../../domain";
 
 defineProps<{
   message: IWarning["message"];
@@ -13,7 +13,12 @@ defineProps<{
 
     <ul class="links">
       <li v-for="(link, index) in links" :key="index" class="link">
-        <a :href="link.url" :class="`text-button ${index ? 'secondary' : 'primary'}`" target="_blank">
+        <a
+          :href="link.url"
+          :class="`text-button ${index ? 'secondary' : 'primary'}`"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {{ link.name }}
         </a>
       </li>
@@ -22,7 +27,7 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
-@use "src/styles/breakpoints.scss" as *;
+@use "../../styles/breakpoints.scss" as *;
 
 .warning {
   display: flex;

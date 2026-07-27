@@ -1,27 +1,37 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
-import axios from "axios";
-import { Window, Markdown, Carousel, Warning } from "@components";
-import { projects } from "@content";
-import { IProject } from "@domain";
+import { computed, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { Window } from "../components/window";
+import { Markdown } from "../components/markdown";
+import { Carousel } from "../components/carousel";
+import { Warning } from "../components/warning";
+import { projects } from "../content";
+import { useMarkdownSource } from "../composables/useMarkdownSource";
 
-const display = ref("");
-const activeProject = ref<IProject>(projects[Object.keys(projects)[0]]);
+const route = useRoute();
+const router = useRouter();
+const firstProject = Object.values(projects)[0];
 
-onMounted(() => {
-  const id = useRoute().params.id as string;
-  activeProject.value = projects[id] as IProject;
-
-  axios
-    .get(activeProject.value.display.src)
-    .then((response) => {
-      display.value = response.data;
-    })
-    .catch((error) => {
-      console.error("Error loading Markdown file:", error);
-    });
+const activeProject = computed(() => {
+  const id = String(route.params.id ?? "");
+  return projects[id] ?? firstProject;
 });
+
+const displaySource = computed(() => activeProject.value.display.src);
+const { content: display } = useMarkdownSource(displaySource);
+
+if (route.params.id && !projects[String(route.params.id)]) {
+  void router.replace("/projects");
+}
+
+watch(
+  () => route.params.id,
+  (id) => {
+    if (id && !projects[String(id)]) {
+      void router.replace("/projects");
+    }
+  }
+);
 </script>
 
 <template>

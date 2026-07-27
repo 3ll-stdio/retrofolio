@@ -1,149 +1,107 @@
-import { IFiles } from "@domain";
+import { type IFiles } from "../domain";
 
-export const files: IFiles = {
-  "introduction": {
-    name: "Introduction",
-    display: {
-      src: "./assets/home/introduction/readme.md",
-      metaInfo: {
-        name: "readme.md",
-        directory: "~/introduction/readme.md",
-        type: "Markdown",
-        size: "4KB",
-        date: "22-10-2023",
-      },
-    },
-    image: {
-      src: "./assets/home/introduction/display-img.png",
-      metaInfo: {
-        name: "Display Image",
-        directory: "~/introduction/images",
-        type: "PNG",
-        size: "5MB",
-        date: "22-10-2023",
-      },
-    },
-    metaInfo: {
-      name: "Introduction",
-      type: "Markdown",
-      date: "22-10-2023",
-      owner: "3ll",
-    },
-  },
-  "file-1": {
-    name: "File 1",
-    display: {
-      src: "./assets/home/file-1/readme.md",
-      metaInfo: {
-        name: "readme.md",
-        directory: "~/file-1/readme.md",
-        type: "Markdown",
-        size: "3KB",
-        date: "05-07-2023",
-      },
-    },
-    image: {
-      src: "./assets/home/file-1/display-img.webp",
-      metaInfo: {
-        name: "Display Image",
-        directory: "~/file-1/images",
-        type: "WEBP",
-        size: "2MB",
-        date: "05-07-2023",
-      },
-    },
-    metaInfo: {
-      name: "File 1",
-      type: "Markdown",
-      date: "05-07-2023",
-      owner: "Team A",
-    },
-  },
-  "file-2": {
-    name: "File 2",
-    display: {
-      src: "./assets/home/file-2/readme.md",
-      metaInfo: {
-        name: "readme.md",
-        directory: "~/file-2/readme.md",
-        type: "Markdown",
-        size: "5.5KB",
-        date: "12-06-2021",
-      },
-    },
-    image: {
-      src: "./assets/home/file-2/display-img.webp",
-      metaInfo: {
-        name: "Display Image",
-        directory: "~/file-2/images",
-        type: "WEBP",
-        size: "3.1MB",
-        date: "12-06-2021",
-      },
-    },
-    metaInfo: {
-      name: "File 2",
-      type: "Markdown",
-      date: "12-06-2021",
-      owner: "Team B",
-    },
-  },
-  "file-3": {
-    name: "File 3",
-    display: {
-      src: "./assets/home/file-3/readme.md",
-      metaInfo: {
-        name: "readme.md",
-        directory: "~/file-3/readme.md",
-        type: "Markdown",
-        size: "8.1KB",
-        date: "30-01-2021",
-      },
-    },
-    image: {
-      src: "./assets/home/file-3/display-img.webp",
-      metaInfo: {
-        name: "Display Image",
-        directory: "~/file-3/images",
-        type: "WEBP",
-        size: "3MB",
-        date: "30-01-2021",
-      },
-    },
-    metaInfo: {
-      name: "File 3",
-      type: "Markdown",
-      date: "30-01-2021",
-      owner: "Team A",
-    },
-  },
-  "file-4": {
-    name: "File 4",
-    display: {
-      src: "./assets/home/file-4/readme.md",
-      metaInfo: {
-        name: "readme.md",
-        directory: "~/file-4/readme.md",
-        type: "Markdown",
-        size: "1.1KB",
-        date: "02-12-2019",
-      },
-    },
-    image: {
-      src: "./assets/home/file-4/display-img.webp",
-      metaInfo: {
-        name: "Display Image",
-        directory: "~/file-4/images",
-        type: "WEBP",
-        size: "2.4MB",
-        date: "02-12-2019",
-      },
-    },
-    metaInfo: {
-      name: "File 4",
-      type: "Markdown",
-      date: "02-12-2019",
-      owner: "Team C",
-    },
-  },
+type FileSeed = {
+  id: string;
+  name: string;
+  owner: string;
+  date: string;
+  readmeSize: string;
+  imageSize: string;
+  imageExt: "png" | "webp";
 };
+
+const fileSeeds: FileSeed[] = [
+  {
+    id: "introduction",
+    name: "Introduction",
+    owner: "3ll",
+    date: "22-10-2023",
+    readmeSize: "4KB",
+    imageSize: "5MB",
+    imageExt: "png",
+  },
+  {
+    id: "file-1",
+    name: "File 1",
+    owner: "Team A",
+    date: "05-07-2023",
+    readmeSize: "3KB",
+    imageSize: "2MB",
+    imageExt: "webp",
+  },
+  {
+    id: "file-2",
+    name: "File 2",
+    owner: "Team B",
+    date: "12-06-2021",
+    readmeSize: "5.5KB",
+    imageSize: "3.1MB",
+    imageExt: "webp",
+  },
+  {
+    id: "file-3",
+    name: "File 3",
+    owner: "Team A",
+    date: "30-01-2021",
+    readmeSize: "8.1KB",
+    imageSize: "3MB",
+    imageExt: "webp",
+  },
+  {
+    id: "file-4",
+    name: "File 4",
+    owner: "Team C",
+    date: "02-12-2019",
+    readmeSize: "1.1KB",
+    imageSize: "2.4MB",
+    imageExt: "webp",
+  },
+];
+
+const validateFileSeeds = (seeds: FileSeed[]) => {
+  const ids = new Set<string>();
+
+  for (const seed of seeds) {
+    if (ids.has(seed.id)) {
+      throw new Error(`Duplicate home file id: ${seed.id}`);
+    }
+    ids.add(seed.id);
+  }
+};
+
+validateFileSeeds(fileSeeds);
+
+export const files: IFiles = Object.fromEntries(
+  fileSeeds.map((seed) => [
+    seed.id,
+    {
+      name: seed.name,
+      display: {
+        src: `/assets/home/${seed.id}/readme.md`,
+        metaInfo: {
+          name: "readme.md",
+          directory: `~/${seed.id}/readme.md`,
+          type: "Markdown",
+          size: seed.readmeSize,
+          date: seed.date,
+        },
+      },
+      image: {
+        src: `/assets/home/${seed.id}/display-img.${seed.imageExt}`,
+        metaInfo: {
+          name: "Display Image",
+          directory: `~/${seed.id}/images`,
+          type: seed.imageExt.toUpperCase(),
+          size: seed.imageSize,
+          date: seed.date,
+        },
+      },
+      metaInfo: {
+        name: seed.name,
+        type: "Markdown",
+        date: seed.date,
+        owner: seed.owner,
+      },
+    },
+  ])
+);

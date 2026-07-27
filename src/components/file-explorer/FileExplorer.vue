@@ -1,41 +1,61 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { IFile } from "@domain";
-import { files } from "@content";
+import { nextTick, onMounted, ref } from "vue";
+import type { ComponentPublicInstance } from "vue";
+import { type IFile } from "../../domain";
+import { files } from "../../content";
 
 const emits = defineEmits(["handleFileChange"]);
 const filesArray: IFile[] = Object.values(files);
+const activeIndex = ref(0);
+const rowRefs = ref<(HTMLTableRowElement | null)[]>([]);
+
+const setRowRef = (
+  el: Element | ComponentPublicInstance | null,
+  index: number
+) => {
+  rowRefs.value[index] = el as HTMLTableRowElement | null;
+};
 
 const handleClick = (file: IFile, index: number) => {
-  const activeElement = document.querySelector(".file-explorer .active");
-  if (activeElement) activeElement.classList.remove("active");
-
-  const target = document.querySelector(
-    `.file-explorer tr[data-file-index="${index}"]`
-  );
-  if (target) target.classList.add("active");
-
+  activeIndex.value = index;
   emits("handleFileChange", file);
 };
 
-const handleArrowNavigation = (
-  index: number,
-  direction: string,
-  event: Event
-) => {
-  event.preventDefault();
+const focusAndSelectRow = async (index: number) => {
+  activeIndex.value = index;
+  emits("handleFileChange", filesArray[index]);
+  await nextTick();
+  rowRefs.value[index]?.focus();
+};
+
+const handleArrowNavigation = (index: number, direction: "up" | "down") => {
   const newIndex = direction === "up" ? index - 1 : index + 1;
   const filesCount = filesArray.length;
   const validIndex = (newIndex + filesCount) % filesCount;
+  focusAndSelectRow(validIndex);
+};
 
-  const focusedElement = document.activeElement as HTMLElement;
-  if (focusedElement) focusedElement.blur();
+const handleRowKeydown = (
+  index: number,
+  file: IFile,
+  event: KeyboardEvent
+) => {
+  if (event.key === "ArrowUp") {
+    event.preventDefault();
+    handleArrowNavigation(index, "up");
+    return;
+  }
 
-  const target = document.querySelector(
-    `.file-explorer tr[data-file-index="${validIndex.toString()}"]`
-  ) as HTMLElement;
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    handleArrowNavigation(index, "down");
+    return;
+  }
 
-  if (target) target.focus();
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    handleClick(file, index);
+  }
 };
 
 onMounted(() => {
@@ -54,16 +74,18 @@ onMounted(() => {
           <th class="p3">Date</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody role="listbox" aria-label="File options">
         <tr
           v-for="(file, index) in filesArray"
           :key="index"
+          :ref="(el) => setRowRef(el, index)"
           @click="handleClick(file, index)"
-          @keyup.enter="handleClick(file, index)"
-          @keyup.up="handleArrowNavigation(index as number, 'up', $event)"
-          @keyup.down="handleArrowNavigation(index as number, 'down', $event)"
-          :data-file-index="index"
-          tabindex="0"
+          @focus="activeIndex = index"
+          @keydown="handleRowKeydown(index, file, $event)"
+          :class="{ active: activeIndex === index }"
+          :aria-selected="activeIndex === index"
+          :tabindex="activeIndex === index ? 0 : -1"
+          role="option"
         >
           <td>{{ file.metaInfo.name }}</td>
           <td>{{ file.metaInfo.owner }}</td>

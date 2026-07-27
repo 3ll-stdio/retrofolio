@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import axios from "axios";
-import { Window, Markdown } from "@components";
-import { IWindow } from "@domain";
-
-const readme = ref("");
+import { computed } from "vue";
+import { Window } from "../components/window";
+import { Markdown } from "../components/markdown";
+import { type IWindow } from "../domain";
+import { useMarkdownSource } from "../composables/useMarkdownSource";
 
 const metaInfo: IWindow = {
   name: "CV.md",
@@ -13,17 +12,8 @@ const metaInfo: IWindow = {
   size: "83KB",
   date: "05/10/2023",
 };
-
-onMounted(() => {
-  axios
-    .get("./assets/about/cv.md")
-    .then((response) => {
-      readme.value = response.data;
-    })
-    .catch((error) => {
-      console.error("Error loading Markdown file:", error);
-    });
-});
+const cvSource = computed(() => "/assets/about/cv.md");
+const { content: readme } = useMarkdownSource(cvSource);
 </script>
 
 <template>

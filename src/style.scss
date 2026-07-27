@@ -1,7 +1,7 @@
-@import './styles/breakpoints.scss';
-@import './styles/colors.scss';
-@import './styles/spacing.scss';
-@import './styles/typography.scss';
+@use "./styles/breakpoints.scss";
+@use "./styles/colors.scss";
+@use "./styles/spacing.scss";
+@use "./styles/typography.scss";
 
 :root {
   --duration-1: 0.2s;
@@ -15,11 +15,9 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-*:focus,
-*:focus-within,
-*:focus-visible,
-*:active {
-  outline: none;
+*:focus-visible {
+  outline: 2px solid var(--primary-4);
+  outline-offset: 2px;
 }
 
 html {
@@ -80,7 +78,7 @@ dialog {
 input,
 textarea {
   background: none;
-  border: none
+  border: none;
 }
 
 hr {
